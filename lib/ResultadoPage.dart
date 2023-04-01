@@ -4,10 +4,11 @@ class ResultadoPage extends StatelessWidget {
   const ResultadoPage({
     super.key,
     this.result,
-    required this.valorIMC,
+    required this.valorIMC, required this.valorIGC,
   });
   final String? result;
   final String valorIMC;
+  final String valorIGC;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +46,19 @@ class ResultadoPage extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Text(
                 'Seu IMC é: $valorIMC',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                'Seu IGC é: $valorIGC',
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 25,

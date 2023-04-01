@@ -279,7 +279,7 @@ class _IMC extends State<IMC> {
 
     String resulto = "";
 
-    //os ifs abaixo são para verificar o resultado do IGC e retornar o resultado
+    //os ifs abaixo são para verificar o resultado e retornar o resultado
     if (resultIMC < 18.5) {
       resulto = "Abaixo do peso";
     } else if (resultIMC >= 18.5 && resultIMC < 24.9) {
@@ -295,11 +295,12 @@ class _IMC extends State<IMC> {
     }
 
     String resultIMCFinal = resultIMC.toStringAsFixed(1);
+    String resultIGCFinal = resultIGC.toStringAsFixed(1);
 
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ResultadoPage(
-          result: resulto, valorIMC: resultIMCFinal,
+          result: resulto, valorIMC: resultIMCFinal, valorIGC: resultIGCFinal,
         ),
       ),
     );
