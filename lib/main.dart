@@ -4,7 +4,7 @@ import 'ResultadoPage.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: ResultadoPage(),
+    home: const IMC(),
     theme: ThemeData(hintColor: Colors.blue, primaryColor: Colors.white),
   ));
 }
@@ -245,6 +245,18 @@ class _IMC extends State<IMC> {
                 ),
               ),
             ),
+            Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+              padding: const EdgeInsets.all(8),
+              child: const Text(
+                'By Vinicius Ribeiro & Gabriel Ribeiro',
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
       ),
@@ -265,25 +277,31 @@ class _IMC extends State<IMC> {
       resultIGC = (1.2 * resultIMC) + (0.23 * idade) - (10.8 * 1.0) - 5.4;
     }
 
-    String result;
+    String resulto = "";
 
     //os ifs abaixo são para verificar o resultado do IGC e retornar o resultado
-    if (resultIGC < 14) {
-      result = 'Muito abaixo do peso';
-    } else if (resultIGC >= 14 && resultIGC < 17) {
-      result = 'Abaixo do peso';
-    } else if (resultIGC >= 17 && resultIGC < 18.5) {
-      result = 'Peso dentro do normal';
-    } else if (resultIGC >= 18.5 && resultIGC < 25) {
-      result = 'Acima do peso';
-    } else if (resultIGC >= 25 && resultIGC < 30) {
-      result = 'Obesidade I';
-    } else if (resultIGC >= 30 && resultIGC < 35) {
-      result = 'Obesidade II (severa)';
-    } else if (resultIGC >= 35) {
-      result = 'Obesidade III (mórbida)';
+    if (resultIMC < 18.5) {
+      resulto = "Abaixo do peso";
+    } else if (resultIMC >= 18.5 && resultIMC < 24.9) {
+      resulto = "Peso normal";
+    } else if (resultIMC >= 24.9 && resultIMC < 29.9) {
+      resulto = "Sobrepeso";
+    } else if (resultIMC >= 29.9 && resultIMC < 34.9) {
+      resulto = "Obesidade grau 1";
+    } else if (resultIMC >= 34.9 && resultIMC < 39.9) {
+      resulto = "Obesidade grau 2";
+    } else if (resultIMC >= 40) {
+      resulto = "Obesidade grau 3";
     }
 
-    //chamar a tela de resultado e enviar o result pra la para ser exibido
+    String resultIMCFinal = resultIMC.toStringAsFixed(1);
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ResultadoPage(
+          result: resulto, valorIMC: resultIMCFinal,
+        ),
+      ),
+    );
   }
 }
